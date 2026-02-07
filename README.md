@@ -65,10 +65,10 @@ project/
 
 4. Setup Instructions
 4.1 Clone Repository
-git clone <your_repo_url>
+git clone <https://github.com/ZhuoranZhang0806/Streaming-Data-for-Predictive-Maintenance-with-Linear-Regression-Based-Alerts.git>
 cd project
 
-4.2 Create Virtual Environment (Python 3.11 recommended)
+4.2 Create Virtual Environment (Python recommended)
 
 Windows:
 
