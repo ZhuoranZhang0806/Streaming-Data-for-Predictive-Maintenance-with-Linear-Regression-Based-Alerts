@@ -1,0 +1,65 @@
+database:
+  connstr: postgresql://neondb_owner:npg_Sh8bV3HjZvkd@ep-plain-scene-ahmzh8by-pooler.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+  source_table: robot_data
+
+paths:
+  raw_dir: data/raw
+  preprocessed_dir: data/preprocessed
+  models_dir: data/models
+  experiments_dir: experiments
+
+  raw_csv: data/raw/RMBR4-2_export_test.csv
+  period_csv: data/raw/RMBR4-2_export_test_1.csv
+
+  preprocessed_csv: data/preprocessed/RMBR4-2_export_preprocessed.csv
+  preprocessed_train_csv: data/preprocessed/RMBR4-2_export_preprocessed_train.csv
+  preprocessed_test_csv: data/preprocessed/RMBR4-2_export_preprocessed_test.csv
+
+  theta_table_csv: data/models/interval_theta_table.csv
+  evaluated_csv: data/models/interval_theta_table_evaluated.csv
+
+  threshold_csv: data/models/alert_thresholds.csv
+
+  results_csv: experiments/results.csv
+
+  stream_threshold_csv: data/models/alert_thresholds.csv
+
+work_period_detection:
+  smooth_seconds: 6.0
+  max_gap_multiplier: 10.0
+  min_gap_seconds: 6.0
+  min_work_seconds: 8.0
+  thresh_quantile: 0.65
+  thresh_scale: 0.5
+
+interval:
+  interval_size: 10
+
+split:
+  test_ratio: 0.2
+  random_state: 42
+  by_interval: true
+
+training:
+  learning_rate: 0.05
+  iterations: 3000
+  use_standardized: true
+
+alerts:
+  k: 2.5
+  predict_offset_days: 14
+  slope_source: sklearn
+
+stream:
+  enabled: true
+  init_from_csv_if_empty: true
+  source_table: robot_data
+  raw_csv: data/raw/RMBR4-2_export_test.csv
+
+  plot_window_len: 200
+  max_xticks: 50
+  delay: 0.1
+
+  work_threshold: 0.2
+  min_work_points: 10
+  alert_cooldown_sec: 10.0

@@ -1,0 +1,30 @@
+# Core scientific stack
+numpy
+pandas
+scikit-learn
+requests
+
+# Visualization
+matplotlib
+
+# Configuration
+pyyaml
+
+# Notebooks
+jupyter
+ipykernel
+
+# Kaggle datasets
+kagglehub[pandas-datasets]
+
+# Database interaction
+sqlalchemy
+
+# GUI
+PyQt5
+
+# PostgreSQL adapter
+psycopg2
+
+# Testing framework
+pytest
