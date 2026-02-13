@@ -75,8 +75,8 @@ def detect_alerts_on_test(config: Dict[str, Any]) -> pd.DataFrame:
     merged["peak_slope_flag"] = merged[peak_slope_col].abs() > float(thr["peak_slope_threshold"])
 
     # Level + trend logic
-    merged["aging_alert"] = merged["mean_slope_flag"] & (merged["interval_mean_level"] > float(thr["mean_alert_threshold"]))
-    merged["fault_alert"] = merged["peak_slope_flag"] & (merged["interval_peak_level"] > float(thr["peak_alert_threshold"]))
+    merged["aging_alert"] = merged["mean_slope_flag"] | (merged["interval_mean_level"] > float(thr["mean_alert_threshold"]))
+    merged["fault_alert"] = merged["peak_slope_flag"] | (merged["interval_peak_level"] > float(thr["peak_alert_threshold"]))
 
     def failure_type(r) -> str:
         if bool(r["aging_alert"]) and bool(r["fault_alert"]):
